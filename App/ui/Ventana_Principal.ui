@@ -32,6 +32,24 @@ border-radius: 20px</string>
      <string>Ansina mero</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>130</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 227, 19);
+color: rgb(47, 47, 47);
+border-radius: 20px</string>
+    </property>
+    <property name="text">
+     <string>Eyyyy</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
