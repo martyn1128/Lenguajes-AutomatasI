@@ -1,11 +1,11 @@
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 import sys
 from App.views.Ventana_Principal import MainWindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.show()
+    window.ventana_principal.show()
     sys.exit(app.exec())
     print("odisexo")
 

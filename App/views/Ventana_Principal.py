@@ -1,7 +1,11 @@
-from PyQt6.QtWidgets import QMainWindow
-from PyQt6 import uic
+ 
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtUiTools import QUiLoader
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        ventana_principal = uic.loadUi("App/ui/Ventana_Principal.ui", self)
+        
+        self.ventana_principal = QUiLoader().load("App/ui/Ventana_Principal.ui", None)
+        self.ventana_principal.setWindowTitle("Compilador")
+        
