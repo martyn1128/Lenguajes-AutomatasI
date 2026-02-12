@@ -8,4 +8,5 @@ if __name__ == '__main__':
     window.ventana_principal.show()
     sys.exit(app.exec())
     print("odisexo")
+    print("odisexo2")
 
