@@ -1,5 +1,5 @@
  
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtUiTools import QUiLoader
 
 class MainWindow(QMainWindow):
