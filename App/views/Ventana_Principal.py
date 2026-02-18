@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 67bcf1e2882b12ed0944d30e1e35de0f4bf35977
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtUiTools import QUiLoader
 

@@ -78,6 +78,9 @@ border-radius: 20px</string>
         <height>500</height>
        </size>
       </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Tab 1</string>
