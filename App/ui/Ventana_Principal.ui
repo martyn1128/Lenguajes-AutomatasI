@@ -14,41 +14,83 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>130</y>
-      <width>101</width>
-      <height>41</height>
+      <x>10</x>
+      <y>10</y>
+      <width>781</width>
+      <height>561</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(161, 255, 21);
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page">
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>480</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(161, 255, 21);
 color: rgb(47, 47, 47);
 border-radius: 20px</string>
-    </property>
-    <property name="text">
-     <string>Ansina mero</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>130</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 227, 19);
+      </property>
+      <property name="text">
+       <string>Ansina mero</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>480</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 227, 19);
 color: rgb(47, 47, 47);
 border-radius: 20px</string>
-    </property>
-    <property name="text">
-     <string>Eyyyy</string>
-    </property>
+      </property>
+      <property name="text">
+       <string>Eyyyy</string>
+      </property>
+     </widget>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>400</width>
+        <height>500</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>500</height>
+       </size>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_2"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -57,17 +99,110 @@ border-radius: 20px</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>33</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPrueba">
     <property name="title">
-     <string>Prueba</string>
+     <string>Archivo</string>
     </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="actionNuevo"/>
+    <addaction name="actionGuardar"/>
+    <addaction name="actionGuadar_como"/>
+    <addaction name="actionCerrar"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuEdicion">
+    <property name="title">
+     <string>Edicion</string>
+    </property>
+    <addaction name="actionCopiar"/>
+    <addaction name="actionCortar"/>
+    <addaction name="actionPegar"/>
+    <addaction name="actionSeleccionar_todo"/>
+    <addaction name="actionReaser"/>
+    <addaction name="actionDesaser"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuAnalizar">
+    <property name="title">
+     <string>Analizar</string>
+    </property>
+    <addaction name="actionAnalizador_L_xico"/>
+    <addaction name="actionAnalizador_Sint_ctico"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuPrueba"/>
+   <addaction name="menuEdicion"/>
+   <addaction name="menuAnalizar"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+  </action>
+  <action name="actionNuevo">
+   <property name="text">
+    <string>Nuevo</string>
+   </property>
+  </action>
+  <action name="actionGuardar">
+   <property name="text">
+    <string>Guardar </string>
+   </property>
+  </action>
+  <action name="actionGuadar_como">
+   <property name="text">
+    <string>Guadar como</string>
+   </property>
+  </action>
+  <action name="actionCerrar">
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
+  </action>
+  <action name="actionCopiar">
+   <property name="text">
+    <string>Copiar</string>
+   </property>
+  </action>
+  <action name="actionCortar">
+   <property name="text">
+    <string>Cortar</string>
+   </property>
+  </action>
+  <action name="actionPegar">
+   <property name="text">
+    <string>Pegar</string>
+   </property>
+  </action>
+  <action name="actionSeleccionar_todo">
+   <property name="text">
+    <string>Seleccionar todo</string>
+   </property>
+  </action>
+  <action name="actionReaser">
+   <property name="text">
+    <string>Reaser</string>
+   </property>
+  </action>
+  <action name="actionDesaser">
+   <property name="text">
+    <string>Desaser</string>
+   </property>
+  </action>
+  <action name="actionAnalizador_L_xico">
+   <property name="text">
+    <string>Analizador Léxico</string>
+   </property>
+  </action>
+  <action name="actionAnalizador_Sint_ctico">
+   <property name="text">
+    <string>Analizador Sintáctico</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
