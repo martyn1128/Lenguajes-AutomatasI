@@ -6,202 +6,325 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>813</width>
     <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="stackedWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>781</width>
-      <height>561</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="page">
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>480</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(161, 255, 21);
-color: rgb(47, 47, 47);
-border-radius: 20px</string>
-      </property>
-      <property name="text">
-       <string>Ansina mero</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>480</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 227, 19);
-color: rgb(47, 47, 47);
-border-radius: 20px</string>
-      </property>
-      <property name="text">
-       <string>Eyyyy</string>
-      </property>
-     </widget>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>400</width>
-        <height>500</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>500</height>
-       </size>
+  <widget class="QWidget" name="ventana">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
+      <widget class="QWidget" name="page">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QTabWidget" name="codigo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>500</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Tab 1</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QScrollArea" name="scrollArea">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>474</width>
+                 <height>451</height>
+                </rect>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QTextEdit" name="textEdit"/>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>600</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QTabWidget" name="lexico">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_3">
+              <attribute name="title">
+               <string>Tab 1</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QPlainTextEdit" name="plainTextEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTabWidget" name="sintactico">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="title">
+               <string>Tab 1</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QPlainTextEdit" name="plainTextEdit_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
+      <widget class="QWidget" name="page_2"/>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page_2"/>
-   </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>Nuevo</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../../../Users/FLS/Downloads/file_new_22051.png</normaloff>../../../../Users/FLS/Downloads/file_new_22051.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Guardar</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../../../Users/FLS/Downloads/savedisk_floppydisk_guardar_1543 (2).png</normaloff>../../../../Users/FLS/Downloads/savedisk_floppydisk_guardar_1543 (2).png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Ejecutar</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../../../Users/FLS/Downloads/run_icon-icons.com_61189.png</normaloff>../../../../Users/FLS/Downloads/run_icon-icons.com_61189.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>813</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPrueba">
+   <widget class="QMenu" name="archivo">
     <property name="title">
      <string>Archivo</string>
     </property>
-    <addaction name="actionAbrir"/>
-    <addaction name="actionNuevo"/>
-    <addaction name="actionGuardar"/>
-    <addaction name="actionGuadar_como"/>
-    <addaction name="actionCerrar"/>
+    <addaction name="abrir"/>
+    <addaction name="nuevo"/>
+    <addaction name="guardar"/>
+    <addaction name="guardar_c"/>
+    <addaction name="cerrar"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuEdicion">
+   <widget class="QMenu" name="edicion">
     <property name="title">
      <string>Edicion</string>
     </property>
-    <addaction name="actionCopiar"/>
-    <addaction name="actionCortar"/>
-    <addaction name="actionPegar"/>
-    <addaction name="actionSeleccionar_todo"/>
-    <addaction name="actionReaser"/>
-    <addaction name="actionDesaser"/>
+    <addaction name="copiar"/>
+    <addaction name="cortar"/>
+    <addaction name="pegar"/>
+    <addaction name="selec_todo"/>
+    <addaction name="reaser"/>
+    <addaction name="desaser"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuAnalizar">
+   <widget class="QMenu" name="analizar">
     <property name="title">
      <string>Analizar</string>
     </property>
-    <addaction name="actionAnalizador_L_xico"/>
-    <addaction name="actionAnalizador_Sint_ctico"/>
+    <addaction name="a_lexico"/>
+    <addaction name="a_sintactico"/>
     <addaction name="separator"/>
    </widget>
-   <addaction name="menuPrueba"/>
-   <addaction name="menuEdicion"/>
-   <addaction name="menuAnalizar"/>
+   <addaction name="archivo"/>
+   <addaction name="edicion"/>
+   <addaction name="analizar"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionAbrir">
+  <action name="abrir">
    <property name="text">
     <string>Abrir</string>
    </property>
   </action>
-  <action name="actionNuevo">
+  <action name="nuevo">
    <property name="text">
     <string>Nuevo</string>
    </property>
   </action>
-  <action name="actionGuardar">
+  <action name="guardar">
    <property name="text">
     <string>Guardar </string>
    </property>
   </action>
-  <action name="actionGuadar_como">
+  <action name="guardar_c">
    <property name="text">
     <string>Guadar como</string>
    </property>
   </action>
-  <action name="actionCerrar">
+  <action name="cerrar">
    <property name="text">
     <string>Cerrar</string>
    </property>
   </action>
-  <action name="actionCopiar">
+  <action name="copiar">
    <property name="text">
     <string>Copiar</string>
    </property>
   </action>
-  <action name="actionCortar">
+  <action name="cortar">
    <property name="text">
     <string>Cortar</string>
    </property>
   </action>
-  <action name="actionPegar">
+  <action name="pegar">
    <property name="text">
     <string>Pegar</string>
    </property>
   </action>
-  <action name="actionSeleccionar_todo">
+  <action name="selec_todo">
    <property name="text">
     <string>Seleccionar todo</string>
    </property>
   </action>
-  <action name="actionReaser">
+  <action name="reaser">
    <property name="text">
     <string>Reaser</string>
    </property>
   </action>
-  <action name="actionDesaser">
+  <action name="desaser">
    <property name="text">
     <string>Desaser</string>
    </property>
   </action>
-  <action name="actionAnalizador_L_xico">
+  <action name="a_lexico">
    <property name="text">
     <string>Analizador Léxico</string>
    </property>
   </action>
-  <action name="actionAnalizador_Sint_ctico">
+  <action name="a_sintactico">
    <property name="text">
     <string>Analizador Sintáctico</string>
    </property>
