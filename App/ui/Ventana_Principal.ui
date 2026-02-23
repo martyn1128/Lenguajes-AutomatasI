@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>813</width>
-    <height>600</height>
+    <height>638</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,172 +21,49 @@
   </property>
   <widget class="QWidget" name="ventana">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QStackedWidget" name="stackedWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="page">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QTabWidget" name="codigo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>500</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab">
-           <attribute name="title">
-            <string>Tab 1</string>
-           </attribute>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QScrollArea" name="scrollArea">
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>474</width>
-                 <height>451</height>
-                </rect>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_5">
-                <item>
-                 <widget class="QTextEdit" name="textEdit"/>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="widget" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>600</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QTabWidget" name="lexico">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <widget class="QWidget" name="tab_3">
-              <attribute name="title">
-               <string>Tab 1</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QPlainTextEdit" name="plainTextEdit">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTabWidget" name="sintactico">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <widget class="QWidget" name="tab_5">
-              <attribute name="title">
-               <string>Tab 1</string>
-              </attribute>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item>
-                <widget class="QPlainTextEdit" name="plainTextEdit_2">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_2"/>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QWidget" name="widget_2" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
         <widget class="QPushButton" name="pushButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
          <property name="text">
           <string>Nuevo</string>
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../../../../Users/FLS/Downloads/file_new_22051.png</normaloff>../../../../Users/FLS/Downloads/file_new_22051.png</iconset>
+           <normaloff>../recursos/Iconos/file_new_22051.ico</normaloff>../recursos/Iconos/file_new_22051.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_2">
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="text">
           <string>Guardar</string>
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../../../../Users/FLS/Downloads/savedisk_floppydisk_guardar_1543 (2).png</normaloff>../../../../Users/FLS/Downloads/savedisk_floppydisk_guardar_1543 (2).png</iconset>
+           <normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</iconset>
          </property>
         </widget>
        </item>
@@ -197,7 +74,7 @@
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../../../../Users/FLS/Downloads/run_icon-icons.com_61189.png</normaloff>../../../../Users/FLS/Downloads/run_icon-icons.com_61189.png</iconset>
+           <normaloff>../Iconos/run_icon-icons.com_61189.png</normaloff>../Iconos/run_icon-icons.com_61189.png</iconset>
          </property>
         </widget>
        </item>
@@ -217,6 +94,104 @@
       </layout>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget">
+           <layout class="QVBoxLayout" name="treeview"/>
+          </widget>
+          <widget class="QTabWidget" name="codigo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>600</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentIndex">
+            <number>-1</number>
+           </property>
+           <property name="tabsClosable">
+            <bool>true</bool>
+           </property>
+           <property name="movable">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QWidget" name="widget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>600</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTabWidget" name="analisis">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <property name="tabsClosable">
+               <bool>true</bool>
+              </property>
+              <property name="movable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="tab_5">
+               <attribute name="title">
+                <string>Tab 1</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_3"/>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2"/>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -225,15 +200,29 @@
      <x>0</x>
      <y>0</y>
      <width>813</width>
-     <height>22</height>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="archivo">
     <property name="title">
      <string>Archivo</string>
     </property>
-    <addaction name="abrir"/>
-    <addaction name="nuevo"/>
+    <widget class="QMenu" name="menuAbrir">
+     <property name="title">
+      <string>Abrir</string>
+     </property>
+     <addaction name="AbrirArchivo"/>
+     <addaction name="AbrirCarpeta"/>
+    </widget>
+    <widget class="QMenu" name="menuNuevo">
+     <property name="title">
+      <string>Nuevo</string>
+     </property>
+     <addaction name="NuevoArchivo"/>
+     <addaction name="NuevaCarpeta"/>
+    </widget>
+    <addaction name="menuAbrir"/>
+    <addaction name="menuNuevo"/>
     <addaction name="guardar"/>
     <addaction name="guardar_c"/>
     <addaction name="cerrar"/>
@@ -264,16 +253,6 @@
    <addaction name="analizar"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="abrir">
-   <property name="text">
-    <string>Abrir</string>
-   </property>
-  </action>
-  <action name="nuevo">
-   <property name="text">
-    <string>Nuevo</string>
-   </property>
-  </action>
   <action name="guardar">
    <property name="text">
     <string>Guardar </string>
@@ -327,6 +306,26 @@
   <action name="a_sintactico">
    <property name="text">
     <string>Analizador Sintáctico</string>
+   </property>
+  </action>
+  <action name="AbrirArchivo">
+   <property name="text">
+    <string>Archivo</string>
+   </property>
+  </action>
+  <action name="AbrirCarpeta">
+   <property name="text">
+    <string>Carpeta</string>
+   </property>
+  </action>
+  <action name="NuevoArchivo">
+   <property name="text">
+    <string>Archivo</string>
+   </property>
+  </action>
+  <action name="NuevaCarpeta">
+   <property name="text">
+    <string>Carpeta</string>
    </property>
   </action>
  </widget>
