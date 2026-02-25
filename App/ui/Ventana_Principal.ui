@@ -6,68 +6,328 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>813</width>
+    <height>638</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>130</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(161, 255, 21);
-color: rgb(47, 47, 47);
-border-radius: 20px</string>
-    </property>
-    <property name="text">
-     <string>Ansina mero</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>130</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 227, 19);
-color: rgb(47, 47, 47);
-border-radius: 20px</string>
-    </property>
-    <property name="text">
-     <string>Eyyyy</string>
-    </property>
-   </widget>
+  <widget class="QWidget" name="ventana">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Nuevo</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../recursos/Iconos/file_new_22051.ico</normaloff>../recursos/Iconos/file_new_22051.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="minimumSize">
+          <size>
+           <width>75</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Guardar</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Ejecutar</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Iconos/run_icon-icons.com_61189.png</normaloff>../Iconos/run_icon-icons.com_61189.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget">
+           <layout class="QVBoxLayout" name="treeview"/>
+          </widget>
+          <widget class="QTabWidget" name="codigo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>600</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentIndex">
+            <number>-1</number>
+           </property>
+           <property name="tabsClosable">
+            <bool>true</bool>
+           </property>
+           <property name="movable">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QWidget" name="widget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>600</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTabWidget" name="analisis">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <property name="tabsClosable">
+               <bool>true</bool>
+              </property>
+              <property name="movable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="tab_5">
+               <attribute name="title">
+                <string>Tab 1</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_3"/>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2"/>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>813</width>
      <height>33</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPrueba">
+   <widget class="QMenu" name="archivo">
     <property name="title">
-     <string>Prueba</string>
+     <string>Archivo</string>
     </property>
+    <widget class="QMenu" name="menuAbrir">
+     <property name="title">
+      <string>Abrir</string>
+     </property>
+     <addaction name="AbrirArchivo"/>
+     <addaction name="AbrirCarpeta"/>
+    </widget>
+    <widget class="QMenu" name="menuNuevo">
+     <property name="title">
+      <string>Nuevo</string>
+     </property>
+     <addaction name="NuevoArchivo"/>
+     <addaction name="NuevaCarpeta"/>
+    </widget>
+    <addaction name="menuAbrir"/>
+    <addaction name="menuNuevo"/>
+    <addaction name="guardar"/>
+    <addaction name="guardar_c"/>
+    <addaction name="cerrar"/>
+    <addaction name="separator"/>
    </widget>
-   <addaction name="menuPrueba"/>
+   <widget class="QMenu" name="edicion">
+    <property name="title">
+     <string>Edicion</string>
+    </property>
+    <addaction name="copiar"/>
+    <addaction name="cortar"/>
+    <addaction name="pegar"/>
+    <addaction name="selec_todo"/>
+    <addaction name="reaser"/>
+    <addaction name="desaser"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="analizar">
+    <property name="title">
+     <string>Analizar</string>
+    </property>
+    <addaction name="a_lexico"/>
+    <addaction name="a_sintactico"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="archivo"/>
+   <addaction name="edicion"/>
+   <addaction name="analizar"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="guardar">
+   <property name="text">
+    <string>Guardar </string>
+   </property>
+  </action>
+  <action name="guardar_c">
+   <property name="text">
+    <string>Guadar como</string>
+   </property>
+  </action>
+  <action name="cerrar">
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
+  </action>
+  <action name="copiar">
+   <property name="text">
+    <string>Copiar</string>
+   </property>
+  </action>
+  <action name="cortar">
+   <property name="text">
+    <string>Cortar</string>
+   </property>
+  </action>
+  <action name="pegar">
+   <property name="text">
+    <string>Pegar</string>
+   </property>
+  </action>
+  <action name="selec_todo">
+   <property name="text">
+    <string>Seleccionar todo</string>
+   </property>
+  </action>
+  <action name="reaser">
+   <property name="text">
+    <string>Reaser</string>
+   </property>
+  </action>
+  <action name="desaser">
+   <property name="text">
+    <string>Desaser</string>
+   </property>
+  </action>
+  <action name="a_lexico">
+   <property name="text">
+    <string>Analizador Léxico</string>
+   </property>
+  </action>
+  <action name="a_sintactico">
+   <property name="text">
+    <string>Analizador Sintáctico</string>
+   </property>
+  </action>
+  <action name="AbrirArchivo">
+   <property name="text">
+    <string>Archivo</string>
+   </property>
+  </action>
+  <action name="AbrirCarpeta">
+   <property name="text">
+    <string>Carpeta</string>
+   </property>
+  </action>
+  <action name="NuevoArchivo">
+   <property name="text">
+    <string>Archivo</string>
+   </property>
+  </action>
+  <action name="NuevaCarpeta">
+   <property name="text">
+    <string>Carpeta</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
