@@ -1,13 +1,19 @@
+import os
 import time
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QApplication, QSplashScreen
 import sys
-
+def recurso_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    spalsh = QSplashScreen(QPixmap("App/recursos/Iconos/Phyña.ico").scaled(600, 600, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+    spalsh = QSplashScreen(QPixmap(recurso_path("App/recursos/Iconos/Phyña.ico")).scaled(600, 600, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
     spalsh.showMessage("Cargando......")
     spalsh.show()
 

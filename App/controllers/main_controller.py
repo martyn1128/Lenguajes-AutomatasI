@@ -1,14 +1,20 @@
 import shutil
 
 from PySide6.QtCore import QMimeData, QUrl, Qt
-from PySide6.QtGui import QColor, QPalette, QPixmap
+from PySide6.QtGui import QColor, QPalette, QPixmap, QIcon
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QInputDialog, QApplication, QLabel, QVBoxLayout, QDialog, \
     QPushButton
-import os
+import os, sys
 
 from App.models.Analizador_Lexico import AnalizadorLexico
 from App.models.Analizador_Sintactico import AnalizadorSintactico
 
+def recurso_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 class Controller:
     def __init__(self, view):
@@ -421,8 +427,8 @@ class Controller:
 
         # 2. Agregar Logo
         label_logo = QLabel()
-        pixmap = QPixmap("App/recursos/iconos/Phyña.ico")  # Tu icono
-        label_logo.setPixmap(pixmap.scaled(64, 64, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        icono_temp = QIcon(recurso_path("App/recursos/Iconos/Phyña.ico"))
+        label_logo.setPixmap(icono_temp.pixmap(200, 200))
         label_logo.setAlignment(Qt.AlignCenter)
         layout.addWidget(label_logo)
 

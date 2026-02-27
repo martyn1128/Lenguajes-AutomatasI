@@ -1,3 +1,5 @@
+import sys
+
 from PySide6.QtCore import Qt, QSize
 from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QMainWindow, QFileSystemModel
@@ -7,18 +9,25 @@ from App.views.Analisis_Area import QAnalisisArea
 from App.views.Explorador_Archivos import QExploradorArchivos
 import os
 
+def recurso_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.editor = QCodeEditor()
 
-        self.ventana_principal = QUiLoader().load("App/ui/Ventana_Principal.ui", None)
+        ruta_ui = recurso_path("App/ui/Ventana_Principal.ui")
+        self.ventana_principal = QUiLoader().load(ruta_ui, None)
         self.setWindowTitle("Pyña Code")
-        self.setWindowIcon(QIcon("App/recursos/iconos/Phyña.ico"))
-        self.ventana_principal.BtnNvo.setIcon(QIcon("App/recursos/iconos/file_new_22051.ico"))
-        self.ventana_principal.BtnGuardar.setIcon(QIcon("App/recursos/iconos/save.png"))
-        self.ventana_principal.BtnEjecutar.setIcon(QIcon("App/recursos/iconos/run.png"))
+        self.setWindowIcon(QIcon(recurso_path("App/recursos/iconos/Phyña.ico")))
+        self.ventana_principal.BtnNvo.setIcon(QIcon(recurso_path("App/recursos/iconos/file_new_22051.ico")))
+        self.ventana_principal.BtnGuardar.setIcon(QIcon(recurso_path("App/recursos/iconos/save.png")))
+        self.ventana_principal.BtnEjecutar.setIcon(QIcon(recurso_path("App/recursos/iconos/run.png")))
         self.setCentralWidget(self.ventana_principal)
 
 
