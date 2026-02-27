@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>766</width>
-    <height>638</height>
+    <height>585</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -281,10 +281,24 @@
     </property>
     <addaction name="Acerca_de"/>
    </widget>
+   <widget class="QMenu" name="menuVentana">
+    <property name="title">
+     <string>Ventana</string>
+    </property>
+    <widget class="QMenu" name="menuCambiar_Tema">
+     <property name="title">
+      <string>Cambiar Tema</string>
+     </property>
+     <addaction name="actionOscuro"/>
+     <addaction name="actionClaro"/>
+    </widget>
+    <addaction name="menuCambiar_Tema"/>
+   </widget>
    <addaction name="archivo"/>
    <addaction name="edicion"/>
    <addaction name="analizar"/>
    <addaction name="menuAyuda"/>
+   <addaction name="menuVentana"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="guardar">
@@ -448,6 +462,16 @@
   <action name="Acerca_de">
    <property name="text">
     <string>Acerca de Pyña Code</string>
+   </property>
+  </action>
+  <action name="actionOscuro">
+   <property name="text">
+    <string>Oscuro</string>
+   </property>
+  </action>
+  <action name="actionClaro">
+   <property name="text">
+    <string>Claro</string>
    </property>
   </action>
  </widget>

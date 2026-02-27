@@ -6,7 +6,9 @@ from PySide6.QtWidgets import QApplication, QSplashScreen
 import sys
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv)    
+    with open("App/recursos/oscuro.qss", "r") as f:
+            app.setStyleSheet(f.read())
     spalsh = QSplashScreen(QPixmap("App/recursos/Iconos/Phyña.ico").scaled(600, 600, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
     spalsh.showMessage("Cargando......")
     spalsh.show()

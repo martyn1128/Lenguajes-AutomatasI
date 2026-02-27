@@ -1,0 +1,117 @@
+
+
+/* FONDO GENERAL */
+QMainWindow, QWidget#ventana {
+    background-color: #d1e3f8;
+    color: #0d2137;
+}
+
+/* BARRA DE MENÚ  */
+QMenuBar {
+    background-color: #f0f7ff;
+    border-bottom: 1px solid #74b9ff;
+    color: #0d2137;
+}
+
+QMenuBar::item {
+    background: transparent;
+    padding: 6px 15px; 
+    margin: 2px;
+}
+
+QMenuBar::item:selected {
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 4px;
+}
+
+/* BOTONES DE RAPIDOS */
+QWidget#widget_2 QPushButton {
+    background-color: #25257aad;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 15px;
+    border: 1px;
+    min-width: 80px;
+    margin-top: 13px;
+}
+
+QWidget#widget_2 QPushButton:hover {
+    background-color: #4a90e2;; 
+}
+/* 4. BOTONES GENERALES (Dorado suave) */
+QPushButton {
+    background-color: #d4a74c;
+    color: #3e2723;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    min-width: 80px;
+}
+
+/* PESTAÑAS  */
+QTabWidget::pane {
+    border: 2px solid #4a90e2;
+    background: white;
+}
+
+QTabBar::tab {
+    background: #74b9ff;
+    color: white;
+    padding: 10px 20px;
+    margin-right: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 100px;
+}
+
+QTabBar::tab:selected {
+    background: white;
+    color: #0d2137;
+    border-top: 3px solid #d4a74c;
+}
+
+/* EDITOR Y EXPLORADOR */
+QPlainTextEdit, QTreeView {
+    background-color: white;
+    color: #0d2137;
+    border: 2px solid #74b9ff;
+    border-radius: 4px;
+}
+
+QHeaderView::section {
+    background-color: #ffffff;
+    color: #34363d;
+    padding: 6px;
+    border: 1px solid #d4a74c;
+}
+
+/* MENÚS DESPLEGABLES  */
+QMenu {
+    background-color: #ffffff; 
+    color: #0d2137; 
+    border: 1px solid #74b9ff; 
+    padding: 5px;
+}
+QMenu::icon {
+    background-color: #17518f; 
+    border-radius: 3px;
+    padding: 2px;
+}
+QMenu::item {
+    padding: 6px 25px 6px 20px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background-color: #d1e3f8; 
+    color: #0d2137;
+    border: 1px solid #4a90e2;
+}
+
+QMenu::separator {
+    height: 1px;
+    background: #74b9ff;
+    margin: 5px 10px;
+}
