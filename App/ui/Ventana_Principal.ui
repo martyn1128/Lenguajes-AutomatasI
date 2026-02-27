@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>813</width>
+    <width>766</width>
     <height>638</height>
    </rect>
   </property>
@@ -21,60 +21,78 @@
   </property>
   <widget class="QWidget" name="ventana">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="topMargin">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <widget class="QWidget" name="widget_2" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="BtnNvo">
          <property name="minimumSize">
           <size>
-           <width>20</width>
-           <height>20</height>
+           <width>0</width>
+           <height>0</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Nuevo  Archivo</string>
          </property>
          <property name="layoutDirection">
           <enum>Qt::LayoutDirection::LeftToRight</enum>
          </property>
          <property name="text">
-          <string>Nuevo</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../recursos/Iconos/file_new_22051.ico</normaloff>../recursos/Iconos/file_new_22051.ico</iconset>
+          <string/>
          </property>
          <property name="iconSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>25</width>
+           <height>25</height>
           </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="BtnGuardar">
          <property name="minimumSize">
           <size>
-           <width>75</width>
+           <width>0</width>
            <height>0</height>
           </size>
          </property>
-         <property name="text">
+         <property name="toolTip">
           <string>Guardar</string>
          </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</normaloff>../Iconos/savedisk_floppydisk_guardar_1543 (2).png</iconset>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
+        <widget class="QPushButton" name="BtnEjecutar">
+         <property name="toolTip">
           <string>Ejecutar</string>
          </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../Iconos/run_icon-icons.com_61189.png</normaloff>../Iconos/run_icon-icons.com_61189.png</iconset>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -106,7 +124,7 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
         <item>
          <widget class="QSplitter" name="splitter">
           <property name="orientation">
@@ -124,8 +142,8 @@
            </property>
            <property name="minimumSize">
             <size>
-             <width>600</width>
-             <height>300</height>
+             <width>300</width>
+             <height>10</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -133,6 +151,9 @@
              <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="currentIndex">
             <number>-1</number>
@@ -158,6 +179,12 @@
             </size>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QTabWidget" name="analisis">
               <property name="maximumSize">
@@ -199,7 +226,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>813</width>
+     <width>766</width>
      <height>33</height>
     </rect>
    </property>
@@ -236,8 +263,8 @@
     <addaction name="cortar"/>
     <addaction name="pegar"/>
     <addaction name="selec_todo"/>
-    <addaction name="reaser"/>
-    <addaction name="desaser"/>
+    <addaction name="rehacer"/>
+    <addaction name="deshacer"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="analizar">
@@ -248,54 +275,115 @@
     <addaction name="a_sintactico"/>
     <addaction name="separator"/>
    </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="Acerca_de"/>
+   </widget>
    <addaction name="archivo"/>
    <addaction name="edicion"/>
    <addaction name="analizar"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="guardar">
+   <property name="icon">
+    <iconset theme="document-save"/>
+   </property>
    <property name="text">
     <string>Guardar </string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="guardar_c">
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
    <property name="text">
     <string>Guadar como</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="cerrar">
+   <property name="icon">
+    <iconset theme="edit-clear"/>
+   </property>
    <property name="text">
     <string>Cerrar</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="copiar">
+   <property name="icon">
+    <iconset theme="edit-copy"/>
+   </property>
    <property name="text">
     <string>Copiar</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
   </action>
   <action name="cortar">
+   <property name="icon">
+    <iconset theme="edit-cut"/>
+   </property>
    <property name="text">
     <string>Cortar</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
   </action>
   <action name="pegar">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
    <property name="text">
     <string>Pegar</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
   </action>
   <action name="selec_todo">
+   <property name="icon">
+    <iconset theme="edit-select-all"/>
+   </property>
    <property name="text">
     <string>Seleccionar todo</string>
    </property>
-  </action>
-  <action name="reaser">
-   <property name="text">
-    <string>Reaser</string>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
-  <action name="desaser">
+  <action name="rehacer">
+   <property name="icon">
+    <iconset theme="edit-redo"/>
+   </property>
    <property name="text">
-    <string>Desaser</string>
+    <string>Rehacer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="deshacer">
+   <property name="icon">
+    <iconset theme="document-revert"/>
+   </property>
+   <property name="text">
+    <string>Deshacer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
    </property>
   </action>
   <action name="a_lexico">
@@ -309,23 +397,57 @@
    </property>
   </action>
   <action name="AbrirArchivo">
+   <property name="icon">
+    <iconset theme="document-open"/>
+   </property>
    <property name="text">
     <string>Archivo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O, Ctrl+A</string>
    </property>
   </action>
   <action name="AbrirCarpeta">
+   <property name="icon">
+    <iconset theme="folder-open"/>
+   </property>
    <property name="text">
     <string>Carpeta</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O, Ctrl+C</string>
    </property>
   </action>
   <action name="NuevoArchivo">
+   <property name="icon">
+    <iconset theme="document-new"/>
+   </property>
    <property name="text">
     <string>Archivo</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N, Ctrl+A</string>
+   </property>
   </action>
   <action name="NuevaCarpeta">
+   <property name="icon">
+    <iconset theme="folder-new"/>
+   </property>
    <property name="text">
     <string>Carpeta</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N, Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Desarrolladores:</string>
+   </property>
+  </action>
+  <action name="Acerca_de">
+   <property name="text">
+    <string>Acerca de Pyña Code</string>
    </property>
   </action>
  </widget>

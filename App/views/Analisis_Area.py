@@ -2,15 +2,12 @@ from PySide6.QtWidgets import QPlainTextEdit, QWidget, QVBoxLayout, QSplitter, Q
 from PySide6.QtCore import Qt
 
 
-class QAnalisisArea(QPlainTextEdit):
+class QAnalisisArea(QWidget):
     def __init__(self):
         super().__init__()
         self.file_path = ""
-
-    def crear_elementos_pestaña(self, contlex='', contsint=''):
         # 1. Creamos el widget "base" que será la página de la pestaña
-        widget_principal = QWidget()
-        layout_main = QVBoxLayout(widget_principal)
+        layout_main = QVBoxLayout(self)
 
         # 2. Creamos el Splitter Vertical
         splitter = QSplitter(Qt.Vertical)
@@ -24,7 +21,6 @@ class QAnalisisArea(QPlainTextEdit):
         lbl_lex.setStyleSheet("font-weight: bold; color: #1a5f7a;")
 
         self.txt_lexico = QPlainTextEdit()
-        self.txt_lexico.setPlainText(contlex)
         self.txt_lexico.setReadOnly(True)  # Solo lectura para visualización
 
         layout_lex.addWidget(lbl_lex)
@@ -38,7 +34,6 @@ class QAnalisisArea(QPlainTextEdit):
         lbl_sin.setStyleSheet("font-weight: bold; color: #1a5f7a;")
 
         self.txt_sintactico = QPlainTextEdit()
-        self.txt_sintactico.setPlainText(contsint)
         self.txt_sintactico.setReadOnly(True)
 
         layout_sin.addWidget(lbl_sin)
@@ -54,5 +49,9 @@ class QAnalisisArea(QPlainTextEdit):
         # 4. Metemos el splitter en el layout principal
         layout_main.addWidget(splitter)
 
-        # Retornamos el widget para usarlo en: self.tabWidget.addTab(widget, "Título")
-        return widget_principal
+
+    def llenar_lexico(self, cont):
+        self.txt_lexico.setPlainText(cont)
+
+    def llenar_sintactico(self, cont):
+        self.txt_sintactico.setPlainText(cont)

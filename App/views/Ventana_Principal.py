@@ -1,3 +1,5 @@
+from PySide6.QtCore import Qt, QSize
+from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QMainWindow, QFileSystemModel
 from PySide6.QtUiTools import QUiLoader
 from App.views.Edition_Area import QCodeEditor
@@ -12,13 +14,19 @@ class MainWindow(QMainWindow):
         self.editor = QCodeEditor()
 
         self.ventana_principal = QUiLoader().load("App/ui/Ventana_Principal.ui", None)
-        self.ventana_principal.setWindowTitle("Pyña")
+        self.setWindowTitle("Pyña Code")
+        self.setWindowIcon(QIcon("App/recursos/iconos/Phyña.ico"))
+        self.ventana_principal.BtnNvo.setIcon(QIcon("App/recursos/iconos/file_new_22051.ico"))
+        self.ventana_principal.BtnGuardar.setIcon(QIcon("App/recursos/iconos/save.png"))
+        self.ventana_principal.BtnEjecutar.setIcon(QIcon("App/recursos/iconos/run.png"))
+        self.setCentralWidget(self.ventana_principal)
+
 
         #Explorador de archivos
         self.explorador = QExploradorArchivos()
         self.exploradorC = self.explorador.cargar_explorador()
         self.ventana_principal.treeview.addWidget(self.exploradorC)
-        self.crear_nueva_pestana("Archivo 1", "", self.explorador.get_ruta())
+        self.crear_nueva_pestana("Archivo 1", "", os.path.join(self.explorador.ruta ,"Pyña-Projects"))
 
 
 
@@ -26,15 +34,22 @@ class MainWindow(QMainWindow):
         nuevo_editor = QCodeEditor()
         nuevo_editor.setPlainText(contenido)
         nuevo_editor.file_path = ruta
+        nuevo_editor.textChanged.connect(lambda: self.cambios(nuevo_editor))
         index = self.ventana_principal.codigo.addTab(nuevo_editor, nombre)
+        self.ventana_principal.codigo.resize(1000,100)
         self.ventana_principal.codigo.setCurrentIndex(index)
         self.ventana_principal.codigo.setTabToolTip(index, ruta)
 
     def crear_nuevo_analisis(self, nombre, ruta, contlex = "", contsint = ""):
-        nuevo_analisis = QAnalisisArea().crear_elementos_pestaña(contlex, contsint)
+        nuevo_analisis = QAnalisisArea()
         nuevo_analisis.file_path = ruta
         index = self.ventana_principal.analisis.addTab(nuevo_analisis, nombre)
         self.ventana_principal.analisis.setCurrentIndex(index)
         self.ventana_principal.analisis.setTabToolTip(index, ruta)
+
+    def cambios(self, editor):
+        indice = self.ventana_principal.codigo.currentIndex()
+        self.ventana_principal.codigo.tabBar().setTabTextColor(indice, QColor("red"))
+        editor.guardado = False
 
 
