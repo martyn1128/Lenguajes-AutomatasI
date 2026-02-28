@@ -25,7 +25,7 @@ class Controller:
         self.view.ventana_principal.actionClaro.triggered.connect(lambda: self.aplicar_estilo("claro.qss"))
         
     def aplicar_estilo(self, nombre_archivo):
-        ruta = f"App/recursos/{nombre_archivo}"
+        ruta = recurso_path(f"App/recursos/{nombre_archivo}")
         with open(ruta, "r", encoding="utf-8") as f:
             self.view.ventana_principal.setStyleSheet(f.read())
 
