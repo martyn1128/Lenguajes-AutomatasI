@@ -261,17 +261,18 @@ class Controller:
         if os.path.exists(ruta):
             self.escribir_archivo(editor.toPlainText(), ruta)
             editor.guardado = True
-            paleta = self.view.ventana_principal.codigo.palette()
-            color_normal = paleta.color(QPalette.ColorRole.WindowText)
-            self.view.ventana_principal.codigo.tabBar().setTabTextColor(indice, color_normal)
-            self.view.actualizar_estilo_pestana(self.view.ventana_principal.codigo, indice, False)
+            nombre_codigo = self.view.ventana_principal.codigo.tabText(indice)
+            if nombre_codigo.endswith("*"):
+                self.view.ventana_principal.codigo.setTabText(indice, nombre_codigo[:-1])
             for i in range(self.view.ventana_principal.analisis.count()):
                 if self.view.ventana_principal.analisis.tabToolTip(i) == ruta:
-                    self.view.actualizar_estilo_pestana(self.view.ventana_principal.analisis, i, False)
+                    nombre_analisis = self.view.ventana_principal.analisis.tabText(i)
+                    if nombre_analisis.endswith("*"):
+                        self.view.ventana_principal.analisis.setTabText(i, nombre_analisis[:-1])
             
             return True
-        return self.guardar_como()
-        
+        else:
+            return self.guardar_como()
 
     def guardar_como(self):
         g = False

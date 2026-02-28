@@ -57,17 +57,13 @@ class MainWindow(QMainWindow):
         self.ventana_principal.analisis.setTabToolTip(index, ruta)
 
     def cambios(self, editor):
+        # Buscamos el índice del editor que emitió el cambio
         indice = self.ventana_principal.codigo.indexOf(editor)
+        
         if indice != -1:
             editor.guardado = False
-            self.ventana_principal.codigo.tabBar().setTabTextColor(indice, QColor("#ff4d4d"))
-            self.actualizar_estilo_pestana(self.ventana_principal.codigo, indice, True)
-
-    def actualizar_estilo_pestana(self, widget_tab, indice, es_inseguro):
-        tab_bar = widget_tab.tabBar()
-        estado = "true" if es_inseguro else "false"
-        tab_bar.setProperty("unsaved", estado)
-        tab_bar.style().unpolish(tab_bar)
-        tab_bar.style().polish(tab_bar)
+            nombre = self.ventana_principal.codigo.tabText(indice)
+            if not nombre.endswith("*"):
+                self.ventana_principal.codigo.setTabText(indice, nombre + "*")
 
 

@@ -116,8 +116,3 @@ QMenu::separator {
     background: #74b9ff;
     margin: 5px 10px;
 }
-
-QTabBar::tab[unsaved="true"] {
-    color: #ff4d4d !important; 
-    font-weight: bold;
-}

@@ -114,7 +114,7 @@ QMenu::separator {
     margin: 5px 10px;
 }
 
-QTabBar::tab[unsaved="true"] {
+QTabBar::tab[dirty="true"] {
     color: #ff4d4d !important;
     font-weight: bold;
 }
