@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
         if indice != -1:
             editor.guardado = False
             nombre = self.ventana_principal.codigo.tabText(indice)
-            if not nombre.endswith("*"):
-                self.ventana_principal.codigo.setTabText(indice, nombre + "*")
+            if not nombre.endswith("⚠️"):
+                self.ventana_principal.codigo.setTabText(indice, nombre + "\t⚠️")
 
 

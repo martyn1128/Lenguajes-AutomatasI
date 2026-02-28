@@ -80,7 +80,7 @@ class Controller:
                 resultado = self.mostrar_alerta_guardar(self.view.ventana_principal.codigo.tabText(i))
 
                 if resultado == QMessageBox.Discard:
-                    return
+                    pass
                 elif resultado == QMessageBox.Save:
                     if not self.guardar():
                         event.ignore()
@@ -88,6 +88,7 @@ class Controller:
                 else:
                     event.ignore()
                     return
+        return
 
         event.accept()
 
@@ -262,13 +263,14 @@ class Controller:
             self.escribir_archivo(editor.toPlainText(), ruta)
             editor.guardado = True
             nombre_codigo = self.view.ventana_principal.codigo.tabText(indice)
-            if nombre_codigo.endswith("*"):
-                self.view.ventana_principal.codigo.setTabText(indice, nombre_codigo[:-1])
+            if nombre_codigo.endswith("⚠️"):
+                print(nombre_codigo)
+                self.view.ventana_principal.codigo.setTabText(indice, nombre_codigo[:-3])
             for i in range(self.view.ventana_principal.analisis.count()):
                 if self.view.ventana_principal.analisis.tabToolTip(i) == ruta:
                     nombre_analisis = self.view.ventana_principal.analisis.tabText(i)
-                    if nombre_analisis.endswith("*"):
-                        self.view.ventana_principal.analisis.setTabText(i, nombre_analisis[:-1])
+                    if nombre_analisis.endswith("⚠️"):
+                        self.view.ventana_principal.analisis.setTabText(i, nombre_analisis[:-3])
             
             return True
         else:
