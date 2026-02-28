@@ -255,19 +255,23 @@ class Controller:
 
     def guardar(self):
         indice = self.view.ventana_principal.codigo.currentIndex()
-        editorcodigo = self.view.ventana_principal.codigo.widget(indice)
-        contenido = editorcodigo.toPlainText()
-        ruta = editorcodigo.file_path
+        editor = self.view.ventana_principal.codigo.widget(indice)
+        ruta = editor.file_path
+
         if os.path.exists(ruta):
-            self.escribir_archivo(contenido, ruta)
-            editorcodigo.guardado = True
+            self.escribir_archivo(editor.toPlainText(), ruta)
+            editor.guardado = True
             paleta = self.view.ventana_principal.codigo.palette()
-            # 2. Extraemos el color de texto estándar (WindowText)
-            color_defecto = paleta.color(QPalette.ColorRole.WindowText)
-            self.view.ventana_principal.codigo.tabBar().setTabTextColor(indice, color_defecto)
+            color_normal = paleta.color(QPalette.ColorRole.WindowText)
+            self.view.ventana_principal.codigo.tabBar().setTabTextColor(indice, color_normal)
+            self.view.actualizar_estilo_pestana(self.view.ventana_principal.codigo, indice, False)
+            for i in range(self.view.ventana_principal.analisis.count()):
+                if self.view.ventana_principal.analisis.tabToolTip(i) == ruta:
+                    self.view.actualizar_estilo_pestana(self.view.ventana_principal.analisis, i, False)
+            
             return True
-        else:
-            return self.guardar_como()
+        return self.guardar_como()
+        
 
     def guardar_como(self):
         g = False

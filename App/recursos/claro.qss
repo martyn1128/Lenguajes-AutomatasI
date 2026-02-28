@@ -1,5 +1,6 @@
 
 
+
 /* FONDO GENERAL */
 QMainWindow, QWidget#ventana {
     background-color: #d1e3f8;
@@ -114,4 +115,9 @@ QMenu::separator {
     height: 1px;
     background: #74b9ff;
     margin: 5px 10px;
+}
+
+QTabBar::tab[unsaved="true"] {
+    color: #ff4d4d !important; 
+    font-weight: bold;
 }

@@ -1,5 +1,6 @@
 
 
+
 /* FONDO GENERAL */
 QMainWindow, QWidget#ventana {
     background-color: #0d2137;
@@ -67,6 +68,8 @@ QTabBar::tab {
     min-width: 100px;
 }
 
+
+
 QTabBar::tab:selected {
     background: #4a90e2;
     color: white;
@@ -109,4 +112,9 @@ QMenu::separator {
     height: 1px;
     background: #1a3a5a;
     margin: 5px 10px;
+}
+
+QTabBar::tab[unsaved="true"] {
+    color: #ff4d4d !important;
+    font-weight: bold;
 }
