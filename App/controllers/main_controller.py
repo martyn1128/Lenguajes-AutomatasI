@@ -413,7 +413,9 @@ class Controller:
         self.view.crear_nuevo_analisis(nombre, ruta=file_path)
 
     def analizador_lexico(self):
-        analisis = AnalizadorLexico().analizar()
+        indice = self.view.ventana_principal.codigo.currentIndex()
+        editor = self.view.ventana_principal.codigo.widget(indice)
+        analisis = AnalizadorLexico().analizar(editor.toPlainText())
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
