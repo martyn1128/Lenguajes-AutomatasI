@@ -1,8 +1,7 @@
 import sys
 
-from PySide6.QtCore import Qt, QSize
-from PySide6.QtGui import QIcon, QColor
-from PySide6.QtWidgets import QMainWindow, QFileSystemModel
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtUiTools import QUiLoader
 from App.views.Edition_Area import QCodeEditor
 from App.views.Analisis_Area import QAnalisisArea

@@ -3,14 +3,11 @@ import re
 class AnalizadorLexico:
     def __init__(self):
         patrones = [
-            ('Hexadecimal', r"[-+]?0[xX][\da-fA-F]+"),
-            ('Octal', r"[-+]?0[oO][0-7]+"),
-            ('Flotante', r'[-+]?(\d+\.\d*|\.\d+)([eE][+-]?\d+)?'),
-            ('Entero', r"[-+]?\d+"),
-
+            ('num', r"[1-9][0-9]*((\.[0-9]*[1-9])?([eE][+-]?[1-9][0-9]*)?)?|0[oO][0-7]+|0[xX][1-9][0-9]*a-fA-F]+")
+,
             ('KeyWord', r"\b(and|or|not|for|if|in|is|else|while|import|def|class|print|None|pass|try|with)\b"),
 
-            ('ID', r"[a-zA-Z_][a-zA-Z0-9_]*"),
+            ('id', r"[a-zA-Z_][a-zA-Z0-9_]*"),
 
             ('Operador', r"\*\*=|//=|==|<=|>=|\+=|\*=|-=|/=|!=|\*\*|//|[\*\+\-/=<>%]"),
 
@@ -31,26 +28,11 @@ class AnalizadorLexico:
         for match in re.finditer(self.expresion, cadena):
             tipo = match.lastgroup
             valor = match.group()
-
-            if tipo == 'Espacio':
-                continue
-
-            elif tipo == 'Error':
-                tokens.append(("Error", valor))
-
-            elif tipo == 'Hexadecimal':
-                tokens.append(("Entero", int(valor, 16)))
-
-            elif tipo == 'Octal':
-                tokens.append(("Entero", int(valor, 8)))
-
-            elif tipo == 'Entero':
-                tokens.append((tipo, int(valor)))
-
-            elif tipo == 'Flotante':
-                tokens.append((tipo, float(valor)))
-
+            if tipo == "Espacio":
+                pass
+            elif tipo == "Operador" or tipo == "Parentesis" or tipo == "KeyWord" or tipo == "Llaves":
+                tokens.append(valor)
             else:
-                tokens.append((tipo, valor))
+                tokens.append(tipo)
 
         return tokens

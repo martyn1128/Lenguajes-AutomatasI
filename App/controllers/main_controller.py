@@ -227,7 +227,7 @@ class Controller:
 
     def mostrar_alerta_guardar(self, nombre_archivo):
         # Creamos la caja de mensaje
-        msg_box = QMessageBox()
+        msg_box = QMessageBox(self.view)
         msg_box.setWindowTitle("Cambios sin guardar")
         msg_box.setText(f"El archivo '{nombre_archivo}' ha sido modificado.")
         msg_box.setInformativeText("¿Deseas guardar los cambios antes de cerrar?")
@@ -421,7 +421,8 @@ class Controller:
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
             if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
                 self.view.ventana_principal.analisis.setCurrentIndex(i)
-                self.view.ventana_principal.analisis.widget(i).llenar_lexico(analisis)
+                msj = ""
+                self.view.ventana_principal.analisis.widget(i).llenar_lexico("".join(str(i) for i in analisis))
     def analizador_sintactico(self):
         analisis = AnalizadorSintactico().analizar()
         self.abrir_analisis()
@@ -439,7 +440,7 @@ class Controller:
         # 1. Crear el diálogo
         dialogo = QDialog(self.view.ventana_principal)
         dialogo.setWindowTitle("Acerca de Pyña Code")
-        dialogo.setFixedSize(400, 500)
+        dialogo.setFixedSize(400, 600)
 
         layout = QVBoxLayout()
 

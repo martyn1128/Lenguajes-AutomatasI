@@ -51,15 +51,7 @@ class QAnalisisArea(QWidget):
 
 
     def llenar_lexico(self, cont):
-        if not cont:
-            self.txt_lexico.setPlainText("Sin resultados")
-            return
-
-        texto = ""
-        for tipo, valor in cont:
-            texto += f"{tipo:<15} | {valor}\n"
-
-        self.txt_lexico.setPlainText(texto)
+        self.txt_lexico.setPlainText(cont)
         
 
     def llenar_sintactico(self, cont):
