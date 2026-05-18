@@ -29,9 +29,12 @@ class QExploradorArchivos(QTreeView):
 
         self.modelo_archivos.setRootPath(ruta_padre)
         self.treeview = QTreeView()
+        self.treeview = QTreeView()
         self.treeview.setMaximumSize(450, 16777215)
         self.treeview.setModel(self.modelo_archivos)
         self.treeview.setRootIndex(self.modelo_archivos.index(ruta_padre))
+        self.treeview.header().setVisible(False)
+
 
         # Opcional: Ocultar columnas de tamaño y fecha para que se vea limpio
         self.treeview.setColumnHidden(1, True)

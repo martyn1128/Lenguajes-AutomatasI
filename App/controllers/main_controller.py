@@ -416,6 +416,7 @@ class Controller:
         indice = self.view.ventana_principal.codigo.currentIndex()
         editor = self.view.ventana_principal.codigo.widget(indice)
         analisis = AnalizadorLexico().analizar(editor.toPlainText())
+        self.tokens = analisis
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
@@ -424,7 +425,7 @@ class Controller:
                 msj = ""
                 self.view.ventana_principal.analisis.widget(i).llenar_lexico("".join(str(i) for i in analisis))
     def analizador_sintactico(self):
-        analisis = AnalizadorSintactico().analizar()
+        analisis = AnalizadorSintactico().analizar(self.tokens)
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
