@@ -413,25 +413,45 @@ class Controller:
         self.view.crear_nuevo_analisis(nombre, ruta=file_path)
 
     def analizador_lexico(self):
+        # 1. Obtener el texto del editor actual
         indice = self.view.ventana_principal.codigo.currentIndex()
         editor = self.view.ventana_principal.codigo.widget(indice)
-        analisis = AnalizadorLexico().analizar(editor.toPlainText())
-        self.tokens = analisis
+        codigo_fuente = editor.toPlainText()
+
+        # 2. Instanciar el Lexer y consumir todo para la vista
+        lexer_visual = AnalizadorLexico(codigo_fuente)
+        tokens_para_gui = lexer_visual.obtener_todos_los_tokens_gui()
+
+        # 3. Lógica de pestañas de tu interfaz
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
             if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
                 self.view.ventana_principal.analisis.setCurrentIndex(i)
-                msj = ""
-                self.view.ventana_principal.analisis.widget(i).llenar_lexico("".join(str(i) for i in analisis))
+                # Pasamos la cadena unida al widget
+                msj = "".join(tokens_para_gui)
+                self.view.ventana_principal.analisis.widget(i).llenar_lexico(msj)
+
     def analizador_sintactico(self):
-        analisis = AnalizadorSintactico().analizar(self.tokens)
+        # 1. Volvemos a extraer el texto intacto del editor
+        indice = self.view.ventana_principal.codigo.currentIndex()
+        editor = self.view.ventana_principal.codigo.widget(indice)
+        codigo_fuente = editor.toPlainText()
+
+        # 2. Creamos un Lexer NUEVO (con el puntero en cero) y el Parser
+        lexer = AnalizadorLexico(codigo_fuente)
+        parser = AnalizadorSintactico()
+
+        # 3. El parser consume el lexer fresco on-demand
+        reporte_errores = parser.analizar(lexer)
+
+        # 4. Lógica de pestañas para mostrar el resultado sintáctico
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
             if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
                 self.view.ventana_principal.analisis.setCurrentIndex(i)
-                self.view.ventana_principal.analisis.widget(i).llenar_sintactico(analisis)
+                self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0])
 
     def ejecutar(self):
         self.analizador_lexico()

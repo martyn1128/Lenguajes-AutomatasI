@@ -1,70 +1,98 @@
 import pandas as pd
+
+
 class AnalizadorSintactico:
-    def __init__(self):
-        self.mensaje = "Estamos trabajando en esto..."
-        self.tabla = pd.read_excel('App/models/Tabla.xlsx', sheet_name='TABLA', header=2)
-        self.tabla = self.tabla.iloc[:, 2:]
+    def __init__(self, ruta_excel='App/models/Tabla.xlsx'):
+        self.tabla = pd.read_excel(ruta_excel, sheet_name='TABLA')
         self.tabla.set_index(self.tabla.columns[0], inplace=True)
         self.tabla.index.name = None
+        self.errores = []
 
-    def analizar(self, lista_tokens):
-        # 1. Inicializar la pila con el símbolo de fin de archivo ($) y el No-Terminal inicial
-        pila = ['$']
-        pila.append('E')  # 'prog' es tu símbolo inicial según tu Excel
+    def extraer_simbolos_manual(self, produccion):
+        """
+        Extrae los símbolos de la regla iterando carácter por carácter
+        manualmente y separándolos por espacio.
+        """
+        simbolos = []
+        palabra_actual = ""
 
-        # Clonamos la lista de tokens y nos aseguramos de que termine en '$'
-        tokens = lista_tokens.copy()
-        errores = ""
-        if tokens[-1] != '$':
-            tokens.append('$')
-
-        posicion = 0  # Puntero para saber qué token estamos leyendo
-
-        while len(pila) > 0:
-            print("pila:", pila, "Tokens", tokens[posicion:])
-            cima = pila.pop() # Ver lo que hay arriba de la pila
-            token_actual = tokens[posicion]  # El token que viene del código fuente
-            # CASO 1: La cima de la pila es igual al token actual
-            if cima == token_actual:
-                if cima == '$':
-                    errores += "¡Análisis sintáctico exitoso! El código es correcto."
-                else:
-                    posicion += 1  # Avanzamos al siguiente token de la entrada
-
-            # CASO 2: La cima es un No-Terminal (Buscamos en la matriz de Pandas)
+        for char in produccion:
+            if char == ' ':
+                if palabra_actual != "":
+                    simbolos.append(palabra_actual)
+                    palabra_actual = ""
             else:
-                # Validar si el No-Terminal existe en las filas y el token en las columnas
-                if cima in self.tabla.index and token_actual in self.tabla.columns:
-                    produccion = self.tabla.loc[cima, token_actual]
+                palabra_actual += char
 
-                    # Si la celda está vacía (NaN), es un error sintáctico
+        if palabra_actual != "":
+            simbolos.append(palabra_actual)
+
+        return simbolos
+
+    def analizar(self, lexer):
+        pila = ['$', 'prog']
+        token_actual, error = lexer.obtener_token()
+        print(error)
+        while len(pila) > 0:
+            if token_actual :
+                tk = token_actual.tipo
+                if tk == 'Reservada' or tk == 'Parentesis' or tk == 'Llaves' or tk == 'Coma' or tk == 'DP'\
+                        or tk == 'tipo' or tk == 'Asignacion':
+                    tk = token_actual.valor
+            else:
+                return [error]
+            print(pila, tk)
+            cima = pila.pop()
+            # CASO 1: Terminales
+            if cima not in self.tabla.index:
+                if cima == tk:
+                    if cima == '$':
+                        return self.errores if self.errores else ["Proceso finalizado con 0 Errores"]# Éxito
+                    token_actual, error = lexer.obtener_token()
+                else:
+                    if token_actual:
+                        self.errores.append(f"Error sintactico: Se esperaba '{cima}', se encontró '{token_actual.valor}' (Línea {token_actual.linea})\n")
+                        # Freno: Si estamos en el fin del archivo, no sigas pidiendo tokens
+                        if token_actual.tipo == '$': break
+                    else:
+                        print('HJola')
+                        self.errores.append(error)
+                    token_actual, error = lexer.obtener_token()
+
+
+            # CASO 2: No-Terminales
+            else:
+                if tk in self.tabla.columns:
+                    produccion = self.tabla.loc[cima, tk]
                     if pd.isna(produccion):
-                        errores += f"Error sintáctico: No hay regla para {cima} con el token '{token_actual}'"
-
-                    # Si la producción es Épsilon (Ɛ), no metemos nada a la pila (solo se hizo el pop)
-                    if produccion == 'Ɛ' or produccion.strip() == 'Ɛ':
+                        self.errores.append(f"Error sintactico: Se esperaba {cima} se encontro: {tk if tk != '$' else  "el final del programa"} (Línea {token_actual.linea})\n")
+                        if tk == '$': break
+                        token_actual, _ = lexer.obtener_token()
+                        pila.append(cima)
                         continue
 
-                    # Si tiene símbolos, los separamos e invertimos
-                    # Se invierten porque el primero debe quedar hasta arriba de la pila
-                    simbolos = produccion
-                    for x in range(len(simbolos)):
-                        try:
-                            s = simbolos[-1]
-                            simbolos = simbolos[:len(simbolos) - 1]
-                            if s == "'":
-                                s = simbolos[len(simbolos) -1] + s
-                                simbolos = simbolos[:len(simbolos) -1]
-                            elif s == "d":
-                                s = simbolos[len(simbolos) - 1] + s
-                                simbolos = simbolos[:len(simbolos) - 1]
-                            elif s == "m":
-                                s = "num"
-                                simbolos = simbolos[:len(simbolos) - 2]
-                            pila.append(s)
-                        except IndexError:
-                            pass
-                else:
-                    errores+= f"Error: El símbolo '{cima}' o el token '{token_actual}' no pertenecen a la gramática."
+                    produccion = str(produccion).strip()
 
-        return errores
+                    # Gestión de comandos especiales
+                    if produccion == 'Saltar':
+                        token_actual, _ = lexer.obtener_token()
+                        pila.append(cima)
+                        continue
+                    if produccion == 'Sacar':
+                        continue
+                    if produccion in ['Ɛ', 'ε']:
+                        continue
+                    # Extracción correcta (Fuera del if del épsilon)
+                    simbolos = self.extraer_simbolos_manual(produccion)
+                    for i in range(len(simbolos) - 1, -1, -1):
+                        pila.append(simbolos[i])
+
+                else:
+                    # Token desconocido para la tabla
+                    if tk == '$':
+                        break
+                    token_actual, _ = lexer.obtener_token()
+                    pila.append(cima)
+
+
+        return self.errores if self.errores else ["Proceso finalizado con 0 errores"]
