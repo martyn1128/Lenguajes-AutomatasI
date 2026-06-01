@@ -431,6 +431,9 @@ class Controller:
                 # Pasamos la cadena unida al widget
                 msj = "".join(tokens_para_gui)
                 self.view.ventana_principal.analisis.widget(i).llenar_lexico(msj)
+                self.view.ventana_principal.analisis.widget(i).establecer_tabla_simbolos(
+                    lexer_visual.tablaO
+                )
 
     def analizador_sintactico(self):
         # 1. Volvemos a extraer el texto intacto del editor
@@ -444,14 +447,22 @@ class Controller:
 
         # 3. El parser consume el lexer fresco on-demand
         reporte_errores = parser.analizar(lexer)
-
+        print("\nTABLA DE SÍMBOLOS\n")
+        if lexer.tablaO:
+            lexer.tablaO.imprimir()
         # 4. Lógica de pestañas para mostrar el resultado sintáctico
         self.abrir_analisis()
         for i in range(self.view.ventana_principal.analisis.count()):
             file_path = self.view.ventana_principal.codigo.currentWidget().file_path
             if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
                 self.view.ventana_principal.analisis.setCurrentIndex(i)
-                self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0])
+                if reporte_errores[0] == "Proceso finalizado con 0 Errores":
+                    self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0])
+                else:
+                    self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0], 1)
+                self.view.ventana_principal.analisis.widget(i).establecer_tabla_simbolos(
+                    lexer.tablaO
+                )
 
     def ejecutar(self):
         self.analizador_lexico()

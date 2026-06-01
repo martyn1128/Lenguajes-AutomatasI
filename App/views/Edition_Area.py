@@ -97,10 +97,10 @@ class QCodeEditor(QPlainTextEdit):
                 # Borramos 4 veces
                 for _ in range(4):
                     cursor.deletePreviousChar()
-                return  # Consumimos el evento para que no borre un 5to carácter
-
-            # 4. Si no son 4 espacios, que borre normal
-            super().keyPressEvent(event)
+            else:
+                # 4. Si no son 4 espacios, que borre normal
+                super().keyPressEvent(event)
+            return  # Consumimos el evento para que no borre un carácter de mas
         super().keyPressEvent(event)
 
     def line_number_area_width(self):
