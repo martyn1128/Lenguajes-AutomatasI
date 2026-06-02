@@ -58,14 +58,6 @@ class AnalizadorSintactico:
             if cima in self.tabla.index:
                 if tk in self.tabla.columns:
                     produccion = self.tabla.loc[cima, tk]
-                    if pd.isna(produccion):
-                        self.agrega_error(cima, token_actual.valor, token_actual.linea)
-                        if tk == '$':
-                            break
-                        token_actual, error = lexer.obtener_token()
-                        pila.append(cima)
-                        continue
-
                     produccion = str(produccion).strip()
 
                     if produccion == 'Salto':
@@ -75,6 +67,8 @@ class AnalizadorSintactico:
 
                     if produccion == 'Saltar':
                         self.agrega_error(cima, token_actual.valor, token_actual.linea)
+                        if tk == '$':
+                            break
                         token_actual, error = lexer.obtener_token()
                         pila.append(cima)
                         continue
@@ -120,7 +114,7 @@ class AnalizadorSintactico:
             case '$':
                 cima = "el final del programa"
             case 'modulo':
-                cima = "procede o funcion"
+                cima = "procede, funcion o una declaracion"
             case 'prog':
                 cima = "programa"
             case "T'":

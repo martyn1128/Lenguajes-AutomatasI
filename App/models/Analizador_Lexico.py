@@ -249,9 +249,10 @@ class AnalizadorLexico:
                         tipo_registro = "idp"
                         if not (self.tablaO and self.tablaO.buscar_metodo(valor)):
                             error = (
-                                f"Error semantico: El metodo '{valor}' "
-                                f"no esta en la tabla de simbolos en la linea {self.linea}"
+                                f"Error: '{valor}' "
+                                f"no esta declarado como metodo o funcion {self.linea}"
                             )
+                            return False, error
 
             if valor == "programa":
                 if not self.tablaO:
