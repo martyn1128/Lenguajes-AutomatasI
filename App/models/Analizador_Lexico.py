@@ -141,7 +141,8 @@ class AnalizadorLexico:
 
         while True:
             if not token:
-                break
+                token, error = self.obtener_token()
+                continue
             stoken = token.tipo
             if token.tipo == '$':
                 break
