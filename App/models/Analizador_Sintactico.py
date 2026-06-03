@@ -69,7 +69,7 @@ class AnalizadorSintactico:
             ]:
                 tk = token_actual.valor
             print(pila, tk)
-            self.pil.append(f"{pila} {tk}")
+            self.pil.append(f"{pila}")
             cima = pila.pop()
 
             if cima in self.tabla.index:
