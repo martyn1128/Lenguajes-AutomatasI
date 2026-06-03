@@ -114,10 +114,10 @@ class AnalizadorLexico:
             ('tipo', r"\b(int|float|char|string)\b"),
             ('num_error', r"(?:0[xX](?:$|[0-9a-fA-F]*[^0-9a-fA-F\s][A-Za-z0-9]*)|0[oO](?:$|[0-7]*[89][0-9]*)|[0-9]+\.(?![0-9])|[0-9]+(?:\.[0-9]+)?[eE][+-]?(?![0-9]))"),
             ('noid', r"\b(?!0[xX][0-9a-fA-F]+\b)(?!0[oO][0-7]+\b)[0-9]+[a-zA-Z_][a-zA-Z0-9_]*\b"),
-            ('num', r"(?:[1-9][0-9]*((\.[0-9]*[1-9])?([eE][+-]?[0-9]+)?)?|0[oO][0-7]+|0[xX][0-9a-fA-F]+)|\b0\b"),
+            ('num', r"(?:\-?[1-9][0-9]*((\.[0-9]*[1-9])?([eE][+-]?[0-9]+)?)?|0[oO][0-7]+|0[xX][0-9a-fA-F]+)|\b0\b"),
             ('cero', r"0[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?"),
             ('litcad', r'"[^"]*"'),
-            ('litcar', r"'[^']'"),
+            ('litcar', r"'[^']*'"),
             ('id', r"\b[a-zA-Z_][a-zA-Z0-9_]*\b"),
             ('OperadorRelacional', r"==|!=|>=|<=|>|<"),
             ('OperadorMatematico', r"[\+\-\*/]"),
@@ -139,11 +139,31 @@ class AnalizadorLexico:
         lista_tokens = []
         token, error = self.obtener_token()
 
-        while token and token.tipo != '$':
-            if error:
-                lista_tokens.append(f"{error}\n")
-            lista_tokens.append(f"<{token.tipo}, {token.valor}>\n")
+        while True:
+            if not token:
+                break
+            stoken = token.tipo
+            if token.tipo == '$':
+                break
+
+            if token.tipo in [
+                '',
+                'Reservada',
+                'Parentesis',
+                'Llaves',
+                'Coma',
+                'DP',
+                'tipo',
+                'Asignacion',
+                'OperadorMatematico',
+                'OperadorRelacional'
+            ]:
+                stoken = token.valor
+
+            if token.tipo != 'Salto':
+                lista_tokens.append(f"{stoken}\n")
             token, error = self.obtener_token()
+
 
         return lista_tokens
 
@@ -238,6 +258,7 @@ class AnalizadorLexico:
                     if self.tabla:
                         self.tabla.nombre_tabla = valor
 
+                    tipo = "idp"
                     tipo_registro = "idp"
                     registrar_actual = False
                     self.declaracion_pendiente = None
@@ -250,9 +271,9 @@ class AnalizadorLexico:
                         if not (self.tablaO and self.tablaO.buscar_metodo(valor)):
                             error = (
                                 f"Error: '{valor}' "
-                                f"no esta declarado como metodo o funcion {self.linea}"
+                                f"no esta declarado como metodo o funcion linea: {self.linea}"
                             )
-                            return False, error
+                            #return False, error
 
             if valor == "programa":
                 if not self.tablaO:

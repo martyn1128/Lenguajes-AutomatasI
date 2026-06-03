@@ -412,6 +412,23 @@ class Controller:
         nombre = os.path.basename(file_path)
         self.view.crear_nuevo_analisis(nombre, ruta=file_path)
 
+    def _obtener_widget_analisis_actual(self):
+        file_path = self.view.ventana_principal.codigo.currentWidget().file_path
+        for i in range(self.view.ventana_principal.analisis.count()):
+            if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
+                self.view.ventana_principal.analisis.setCurrentIndex(i)
+                return self.view.ventana_principal.analisis.widget(i)
+        return None
+
+    def _formatear_errores_analisis(self, errores_lexicos="", errores_sintacticos=""):
+        if errores_lexicos and errores_lexicos != "Proceso finalizado con 0 Errores":
+            return errores_lexicos.strip()
+
+        if errores_sintacticos and errores_sintacticos != "Proceso finalizado con 0 Errores":
+            return errores_sintacticos.strip()
+
+        return "Proceso finalizado con 0 Errores"
+
     def analizador_lexico(self):
         # 1. Obtener el texto del editor actual
         indice = self.view.ventana_principal.codigo.currentIndex()
@@ -422,18 +439,24 @@ class Controller:
         lexer_visual = AnalizadorLexico(codigo_fuente)
         tokens_para_gui = lexer_visual.obtener_todos_los_tokens_gui()
 
+        errores_lexicos = next(
+            (linea.strip() for linea in tokens_para_gui if linea.startswith("Error")),
+            "",
+        )
+
         # 3. Lógica de pestañas de tu interfaz
         self.abrir_analisis()
-        for i in range(self.view.ventana_principal.analisis.count()):
-            file_path = self.view.ventana_principal.codigo.currentWidget().file_path
-            if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
-                self.view.ventana_principal.analisis.setCurrentIndex(i)
-                # Pasamos la cadena unida al widget
-                msj = "".join(tokens_para_gui)
-                self.view.ventana_principal.analisis.widget(i).llenar_lexico(msj)
-                self.view.ventana_principal.analisis.widget(i).establecer_tabla_simbolos(
-                    lexer_visual.tablaO
-                )
+        widget_analisis = self._obtener_widget_analisis_actual()
+        if widget_analisis:
+            msj = "".join(tokens_para_gui)
+            widget_analisis.llenar_lexico(msj)
+            widget_analisis.establecer_tabla_simbolos(lexer_visual.tablaO)
+            widget_analisis.llenar_errores(
+                self._formatear_errores_analisis(errores_lexicos=errores_lexicos),
+                1 if errores_lexicos else 0,
+            )
+
+        return widget_analisis, errores_lexicos
 
     def analizador_sintactico(self):
         # 1. Volvemos a extraer el texto intacto del editor
@@ -446,27 +469,47 @@ class Controller:
         parser = AnalizadorSintactico()
 
         # 3. El parser consume el lexer fresco on-demand
-        reporte_errores = parser.analizar(lexer)
+        pila = parser.analizar(lexer)
         print("\nTABLA DE SÍMBOLOS\n")
         if lexer.tablaO:
             lexer.tablaO.imprimir()
+        errores_sintacticos = (
+            parser.errores[0].strip()
+            if parser.errores
+            else "Proceso finalizado con 0 Errores"
+        )
         # 4. Lógica de pestañas para mostrar el resultado sintáctico
         self.abrir_analisis()
-        for i in range(self.view.ventana_principal.analisis.count()):
-            file_path = self.view.ventana_principal.codigo.currentWidget().file_path
-            if self.view.ventana_principal.analisis.tabToolTip(i) == file_path:
-                self.view.ventana_principal.analisis.setCurrentIndex(i)
-                if reporte_errores[0] == "Proceso finalizado con 0 Errores":
-                    self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0])
-                else:
-                    self.view.ventana_principal.analisis.widget(i).llenar_sintactico(reporte_errores[0], 1)
-                self.view.ventana_principal.analisis.widget(i).establecer_tabla_simbolos(
-                    lexer.tablaO
-                )
+        widget_analisis = self._obtener_widget_analisis_actual()
+        if widget_analisis:
+            msj = ""
+            for linea in pila:
+                msj += f"{linea}\n"
+            widget_analisis.llenar_sintactico(msj)
+            widget_analisis.establecer_tabla_simbolos(lexer.tablaO)
+            widget_analisis.llenar_errores(
+                self._formatear_errores_analisis(
+                    errores_sintacticos=errores_sintacticos
+                ),
+                1 if errores_sintacticos != "Proceso finalizado con 0 Errores" else 0,
+            )
+
+        return widget_analisis, errores_sintacticos
 
     def ejecutar(self):
-        self.analizador_lexico()
-        self.analizador_sintactico()
+        widget_lexico, errores_lexicos = self.analizador_lexico()
+        widget_sintactico, errores_sintacticos = self.analizador_sintactico()
+
+        widget_analisis = widget_sintactico or widget_lexico
+        if widget_analisis:
+            texto_errores = self._formatear_errores_analisis(
+                errores_lexicos=errores_lexicos,
+                errores_sintacticos=errores_sintacticos,
+            )
+            widget_analisis.llenar_errores(
+                texto_errores,
+                1 if texto_errores != "Proceso finalizado con 0 Errores" else 0,
+            )
 
     def mostrar_acerca_de(self):
         # 1. Crear el diálogo

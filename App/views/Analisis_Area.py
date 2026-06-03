@@ -8,14 +8,17 @@ from PySide6.QtWidgets import (
     QPlainTextEdit,
     QPushButton,
     QSplitter,
+    QTabWidget,
     QTreeWidget,
     QTreeWidgetItem,
     QVBoxLayout,
     QWidget,
 )
-import os, sys
+import os
+import sys
 
 from App.models.Analizador_Lexico import TablaSimbolos
+
 
 def recurso_path(relative_path):
     try:
@@ -24,8 +27,8 @@ def recurso_path(relative_path):
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
-class QAnalisisArea(QWidget):
 
+class QAnalisisArea(QWidget):
     def __init__(self):
         super().__init__()
         self.file_path = ""
@@ -38,30 +41,36 @@ class QAnalisisArea(QWidget):
         self.btn_tabla_simbolos.setIconSize(QSize(20, 20))
         self.btn_tabla_simbolos.setFixedSize(20, 30)
         self.btn_tabla_simbolos.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_tabla_simbolos.setStyleSheet("QPushButton{"
-                                              "background-color: #1a5f7a;"
-                                              "border: none;"
-                                              "border-radius: 8px;"
-                                              "margin-right: 2000px;"
-                                              "margin-left: 0px;"
-                                              "padding: 4px;"
-                                              "}"
-                                              "QPushButton:hover{"
-                                              "background-color: #f1c40f;"
-                                              "}")
-        self.btn_tabla_simbolos.setEnabled(False)
-        self.btn_tabla_simbolos.setToolTip(
-            "Abre la tabla de símbolos y sus subtablas"
+        self.btn_tabla_simbolos.setStyleSheet(
+            "QPushButton{"
+            "background-color: #1a5f7a;"
+            "border: none;"
+            "border-radius: 8px;"
+            "margin-right: 2000px;"
+            "margin-left: 0px;"
+            "padding: 4px;"
+            "}"
+            "QPushButton:hover{"
+            "background-color: #f1c40f;"
+            "}"
         )
+        self.btn_tabla_simbolos.setEnabled(False)
+        self.btn_tabla_simbolos.setToolTip("Abre la tabla de simbolos y sus subtablas")
         self.btn_tabla_simbolos.clicked.connect(self.mostrar_tabla_simbolos)
         layout_main.addWidget(self.btn_tabla_simbolos)
+
+        self.tab_interno = QTabWidget()
+
+        tab_analisis = QWidget()
+        layout_analisis = QVBoxLayout(tab_analisis)
+        layout_analisis.setContentsMargins(0, 0, 0, 0)
 
         splitter = QSplitter(Qt.Vertical)
 
         panel_lexico = QWidget()
         layout_lex = QVBoxLayout(panel_lexico)
 
-        lbl_lex = QLabel("Analizador Léxico:")
+        lbl_lex = QLabel("Analizador Lexico:")
         lbl_lex.setStyleSheet("font-weight: bold; color: #1a5f7a;")
 
         self.txt_lexico = QPlainTextEdit()
@@ -73,7 +82,7 @@ class QAnalisisArea(QWidget):
         panel_sintactico = QWidget()
         layout_sin = QVBoxLayout(panel_sintactico)
 
-        lbl_sin = QLabel("Analizador Sintáctico:")
+        lbl_sin = QLabel("Analizador Sintactico:")
         lbl_sin.setStyleSheet("font-weight: bold; color: #1a5f7a;")
 
         self.txt_sintactico = QPlainTextEdit()
@@ -86,7 +95,24 @@ class QAnalisisArea(QWidget):
         splitter.addWidget(panel_sintactico)
         splitter.setSizes([400, 400])
 
-        layout_main.addWidget(splitter)
+        layout_analisis.addWidget(splitter)
+        self.tab_interno.addTab(tab_analisis, "Analisis")
+
+        tab_errores = QWidget()
+        layout_errores = QVBoxLayout(tab_errores)
+        layout_errores.setContentsMargins(0, 0, 0, 0)
+
+        lbl_err = QLabel("Errores:")
+        lbl_err.setStyleSheet("font-weight: bold; color: #1a5f7a;")
+
+        self.txt_errores = QPlainTextEdit()
+        self.txt_errores.setReadOnly(True)
+
+        layout_errores.addWidget(lbl_err)
+        layout_errores.addWidget(self.txt_errores)
+        self.tab_interno.addTab(tab_errores, "Errores")
+
+        layout_main.addWidget(self.tab_interno)
 
     def establecer_tabla_simbolos(self, tabla):
         self.tabla_simbolos = tabla
@@ -95,8 +121,8 @@ class QAnalisisArea(QWidget):
     def llenar_lexico(self, cont):
         self.txt_lexico.setPlainText(cont)
 
-    def llenar_sintactico(self, cont, color=0):
-        self.txt_sintactico.setStyleSheet(
+    def _llenar_texto(self, widget, cont, color=0):
+        widget.setStyleSheet(
             """
                 QPlainTextEdit {
                     color: Red;
@@ -106,25 +132,31 @@ class QAnalisisArea(QWidget):
             if color
             else ""
         )
-        self.txt_sintactico.setPlainText(cont)
+        widget.setPlainText(cont)
+
+    def llenar_sintactico(self, cont, color=0):
+        self._llenar_texto(self.txt_sintactico, cont, color)
+
+    def llenar_errores(self, cont, color=0):
+        self._llenar_texto(self.txt_errores, cont, color)
 
     def mostrar_tabla_simbolos(self):
         if not self.tabla_simbolos or not self.tabla_simbolos.tablas:
             QMessageBox.information(
                 self,
-                "Tabla de símbolos",
-                "No hay una tabla de símbolos disponible para mostrar.",
+                "Tabla de simbolos",
+                "No hay una tabla de simbolos disponible para mostrar.",
             )
             return
 
         dialogo = QDialog(self)
-        dialogo.setWindowTitle("Tabla de símbolos")
+        dialogo.setWindowTitle("Tabla de simbolos")
         dialogo.resize(540, 600)
 
         layout = QVBoxLayout(dialogo)
 
         titulo = QLabel(
-            f"Tabla de símbolos: {self.tabla_simbolos.nombre_tabla or 'principal'}"
+            f"Tabla de simbolos: {self.tabla_simbolos.nombre_tabla or 'principal'}"
         )
         titulo.setStyleSheet("font-weight: bold; font-size: 14px;")
         layout.addWidget(titulo)
@@ -137,13 +169,15 @@ class QAnalisisArea(QWidget):
         arbol.header().setStretchLastSection(False)
         layout.addWidget(arbol)
 
-        raiz = QTreeWidgetItem([
-            f"Tabla de símbolos: {self.tabla_simbolos.nombre_tabla or 'principal'}",
-            "",
-            "",
-            "",
-            "",
-        ])
+        raiz = QTreeWidgetItem(
+            [
+                f"Tabla de simbolos: {self.tabla_simbolos.nombre_tabla or 'principal'}",
+                "",
+                "",
+                "",
+                "",
+            ]
+        )
         fuente_raiz = raiz.font(0)
         fuente_raiz.setBold(True)
         raiz.setFont(0, fuente_raiz)
